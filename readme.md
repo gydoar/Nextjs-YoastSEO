@@ -5,7 +5,7 @@ This module helps you **map Yoast SEO metadata** (exposed by WordPress in `yoast
 
 
 > [!NOTE]
-> (a specific post by ID) [Yoast API](https://yoast.com/wp-json/wp/v2/posts/607)
+> (a specific post by ID) `https://yoast.com/wp-json/wp/v2/posts/607 (a specific post by ID)`    [Yoast API](https://developer.yoast.com/customization/apis/rest-api/#1-get-seo-metadata-as-part-of-wordpress-native-wp-rest-api-responses)
 
 It allows you to leverage all the SEO configuration you set up in WordPress directly inside your Next.js pages.
 
@@ -176,7 +176,8 @@ export async function getPostBySlug(slug: string): Promise<Post> {
 This ensures we can request posts dynamically by their slug instead of just ID.
 
 ### 4. Example in a Next.js Dynamic Page
-```
+
+```tsx
 // app/posts/[slug]/page.tsx
 
 import { getPostBySlug } from "@/lib/wordpress";

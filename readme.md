@@ -27,12 +27,14 @@ It allows you to leverage all the SEO configuration you set up in WordPress dire
 
 ## 📂 Project Structure
 lib/  
-├── wordpress.ts # WordPress fetch utilities.  
-└── yoast.ts # Yoast types + metadata transformer.  
- app/.  
-└── posts/.  
-└── [slug]/.  
-└── page.tsx # Example usage with WordPress posts.  
+├── wordpress.ts # WordPress fetch utilities  
+└── yoast.ts # Yoast types + metadata transformer  
+components/   
+└── yoastSEO.tsx # YoastSEO component  
+app/  
+└── posts/  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [slug]/  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── page.tsx # Post page for the single WP posts  
 
 
 ---
@@ -161,9 +163,9 @@ export function yoastMetadata(
 
 ### 3. Fetch WordPress Posts (Optional)
 
-We use a custom fetcher getPostBySlug to query the WordPress REST API, but you feel free to keep using your own fetcher.
+I used a custom fetcher called `getPostBySlug` to query the WordPress REST API, but you feel free to keep using your own fetcher.
 
-```
+```tsx
 export async function getPostBySlug(slug: string): Promise<Post> {
   return wordpressFetch<Post[]>("/wp-json/wp/v2/posts", { slug }).then(
     (posts) => posts[0]
@@ -205,10 +207,10 @@ export async function generateMetadata(
 
 #### Notes
 
-- Next.js Metadata type doesn’t officially support all Yoast fields.
+- Next.js [Metadata](https://nextjs.org/docs/app/api-reference/functions/generate-metadata) type doesn’t officially support all Yoast fields.
 That’s why some values are placed in other.
 
-- Ensure your WordPress REST API exposes yoast_head_json.
+- Ensure your WordPress REST API exposes `yoast_head_json`.
 This requires Yoast SEO plugin v16+.
 
 #### Next Steps
